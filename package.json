@@ -1,0 +1,26 @@
+{
+  "name": "spotify-song-info",
+  "version": "1.0.0",
+  "description": "View more information about a song that is not visible on Spotify (e.g. Genre)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danthick/spotify-song-info.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danthick/spotify-song-info/issues"
+  },
+  "homepage": "https://github.com/danthick/spotify-song-info#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2",
+    "spotify-web-api-node": "^4.0.0"
+  }
+}
