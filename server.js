@@ -1,11 +1,16 @@
 var express = require("express");
-var app = express();
+const bodyParser = require('body-parser');
 var path = require("path")
 var SpotifyWebApi = require('spotify-web-api-node');
+
+var app = express();
 
 var server = app.listen(9000, function (request, response) {
     console.log("Listening on 9000");
 })
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
@@ -41,24 +46,22 @@ app.get('/', function (req, res) {
   
 });
 
-app.get('/info', function(req, res){
-  spotifyApi.getTrack('0rohJsT6NWsThpukt0Xxdc').then(
+app.post('/info', function(req, res){
+  spotifyApi.getTrack(req.body.track).then(
     function(data){
       var artist_id = data.body.artists[0].external_urls.spotify.substring(data.body.artists[0].external_urls.spotify.lastIndexOf('/')+1)
       spotifyApi.getArtist(artist_id).then(
         function(data){
-          console.log(data.body)
           for(var i = 0; i < data.body.genres.length - 1; i++){
             console.log(data.body.genres[i])
+            
           }
-          
+          res.send({genre: data.body.genres})
         }
       )
-
     },
     function(err) {
       console.error(err);
     }
   )
-  res.sendStatus(200)
 })

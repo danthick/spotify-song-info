@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSI</title>
+    <title>Spotify Song Info</title>
 </head>
 <body>
     <h1>
         Spotify Song Info
     </h1>
 
-    <input placeholder="Enter track ID"> </input>
+    <input placeholder="Enter track ID" id="track"> </input>
 
     <button onclick=getInfo()>Get Genre</button>
+
+    <ul id="list"></ul>
     
 </body>
 </html>
@@ -21,13 +23,15 @@
 
     function getInfo(){
         fetch('/info', {
-            method: 'GET',
+            method: 'POST',
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({track: document.getElementById('track').value})
         }).then(res => {
-            // res.json().then(log => {
-                
-            // });
+            res.json().then(log => {
+                var list = "<li>" + log.genre.join("</li><li>") + "</li>";
+                document.getElementById("list").innerHTML = list;
+            });
             }).catch(error => console.log(error))
     }
 </script>
