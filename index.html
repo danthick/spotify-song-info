@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSI</title>
+</head>
+<body>
+    <h1>
+        Spotify Song Info
+    </h1>
+
+    <input placeholder="Enter track ID"> </input>
+
+    <button onclick=getInfo()>Get Genre</button>
+    
+</body>
+</html>
+
+<script>
+
+    function getInfo(){
+        fetch('/info', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+        }).then(res => {
+            // res.json().then(log => {
+                
+            // });
+            }).catch(error => console.log(error))
+    }
+</script>

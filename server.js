@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-const request = require('request');
+var path = require("path")
 var SpotifyWebApi = require('spotify-web-api-node');
 
 var server = app.listen(9000, function (request, response) {
@@ -36,8 +36,12 @@ getAuth().then(async res => {
   spotifyApi.setAccessToken(token);
 });
 
-app.get('/info', function (req, res) {
-  res.send('Hello World!')
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'))
+  
+});
+
+app.get('/info', function(req, res){
   spotifyApi.getTrack('0rohJsT6NWsThpukt0Xxdc').then(
     function(data){
       var artist_id = data.body.artists[0].external_urls.spotify.substring(data.body.artists[0].external_urls.spotify.lastIndexOf('/')+1)
@@ -56,4 +60,5 @@ app.get('/info', function (req, res) {
       console.error(err);
     }
   )
-});
+  res.sendStatus(200)
+})
