@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title>Spotify Song Info</title>
+</head>
+
+<body style="width: 50%; margin: auto; background-image: url(background.jpg);">
+    <div>
+        <h1 style="text-align: center;">
+            Spotify Song Info
+        </h1>
+        <div style="padding: 10px; text-align: center;">
+            <input style="border: solid; border-radius: 50px; border-width: 1px; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);" class="btn primary" placeholder="Enter track ID" id="track"> </input>
+            <br><br>
+
+                <button onclick=getInfo() class="btn btn-primary">Get Genre</button> <br><br>
+                <button class="btn btn-danger" style="border: solid; border-radius: 5px; border-width: 1px; ">Clear</button>
+            
+
+            <ul id="list"></ul>
+        </div>
+    </div>  
+    
+</body>
+</html>
+
+<script>
+
+    function getInfo(){
+        fetch('/info', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({track: document.getElementById('track').value})
+        }).then(res => {
+            res.json().then(log => {
+                var list = "<li>" + log.genre.join("</li><li>") + "</li>";
+                document.getElementById("list").innerHTML = list;
+            });
+            }).catch(error => console.log(error))
+    }
+</script>
