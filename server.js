@@ -4,9 +4,9 @@ var path = require("path")
 var SpotifyWebApi = require('spotify-web-api-node');
 
 var app = express();
-const PORT = 9000 || process.env.PORT;
+const PORT = process.env.PORT || 9000;
 
-var server = app.listen(PORT, function (request, response) {
+var server = app.listen(PORT, function () {
     console.log("Listening on port " + PORT );
 })
 
