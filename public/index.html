@@ -39,21 +39,23 @@
 
 <body>
     <div class="background"></div>
-
-    <div class="main">
-        <h1 class="title">
-            Spotify Song Info
-        </h1><br>
-
-        <div>
-            <input class="btn primary input" placeholder="Enter URL" id="track"> </input><br><br>
-            
-            <button onclick=getInfo() class="get">Get Genre</button> <br><br>
-            <button onclick=clearInfo() class="clear">Clear</button>
-
-            <ul id="list"></ul>
+        <div class="main">
+            <div class="backgroundDrop">
+                <h1 class="title">
+                    Spotify Song Info
+                </h1><br>
+        
+                <div>
+                    <input class="input" placeholder="Enter Song URL" id="track"> </input><br><br>
+                    
+                    <button onclick=getInfo() class="get">Get Genre</button> <br><br>
+                    <button onclick=clearInfo() class="clear">Clear</button>
+        
+                    <ul id="list"></ul>
+                </div>
+            </div>
         </div>
-    </div>  
+      
     
 </body>
 </html>

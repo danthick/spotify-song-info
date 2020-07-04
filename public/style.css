@@ -20,23 +20,35 @@ html, body {
 }
 
 .input {
+    border-width: 0px;
     border-radius: 50px; 
     box-shadow: 1px 1px 1px white;
     background: #E9C46A;
-    height: 5vh;
-    width: 15vw;
+    height: 50px;
+    width: 400px;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+}
+
+.backgroundDrop{
+    background-color: rgba(244, 164, 98, 0.35);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 button {
     border-radius: 5px;
-    height: 5vh;
-    width: 8vw;
+    height: 50px;
+    width: 100px;
     box-shadow: 1px 1px 1px white;
 }
 
 button:focus {
     outline: none;
-  }
+}
 
 .get{
     background-color: #2A9D8F;
